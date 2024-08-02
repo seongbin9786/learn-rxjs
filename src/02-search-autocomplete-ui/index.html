@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link rel="stylesheet" href="./index.css" />
+    <title>Learn RxJS</title>
+  </head>
+  <body>
+    <button id="myButton">Click me to see Subject working</button>
+    <p>사용자 검색</p>
+    <div class="autocomplete-root">
+      <input
+        id="search"
+        type="input"
+        placeholder="검색하고 싶은 사용자 아이디를 입력해주세요"
+      />
+      <ul id="autocomplete-list"></ul>
+      <!-- 로딩바 -->
+      <div id="loading">
+        <i class="fas fa-spinner fa-pulse"></i>
+      </div>
+    </div>
+    <script type="module" src="./index.ts"></script>
+  </body>
+</html>
