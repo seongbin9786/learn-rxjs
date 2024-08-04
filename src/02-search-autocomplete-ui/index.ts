@@ -36,11 +36,10 @@ const searchTermKeyUp$ = fromEvent(
   document.getElementById("search")!,
   "keyup",
 ).pipe(
-  debounceTime(100),
+  debounceTime(300),
   map((event) => (event.target as HTMLInputElement).value),
   distinctUntilChanged(),
-  tap((v) => console.log("from keyup$", v)),
-  share(),
+  // share(),
 );
 
 // NOTE: operator로서의 partition이 제거되고, static method로서의 partition이 추가되었다. (v8에 제거 예정)
@@ -50,14 +49,13 @@ const [onNormalKeyUp$, onResetKeyUp$] = partition(
 );
 
 const onSearchTermKeyUp$ = onNormalKeyUp$.pipe(
-  tap((v) => console.log("really?", v)),
-  tap(showLoading),
+  // tap(showLoading),
   switchMap(getGitHubUserListByName),
-  tap(hideLoading),
-  retry(2), // catch Error 후 재구독 수행. source$에서 전달된 값이 다시 들어온다.
+  // tap(hideLoading),
+  // retry(2), // catch Error 후 재구독 수행. source$에서 전달된 값이 다시 들어온다.
   // retry(2)는 새로 값이 들어오지 않는 한 반복되지 않는다... 뭐야...?
-  finalize(hideLoading),
-  tap((v) => console.log("from normalKeyUp$", v)),
+  // finalize(hideLoading),
+  // tap((v) => console.log("from normalKeyUp$", v)),
 );
 
 onSearchTermKeyUp$.subscribe({
